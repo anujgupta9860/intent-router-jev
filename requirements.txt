@@ -1,0 +1,9 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pyyaml>=6.0
+pydantic>=2.7
+httpx>=0.27
+# Optional (import-guarded; install what you use):
+# typesafe-sdk>=0.1   # TYPESAFE_API_KEY also works with the built-in httpx client
+a2a-sdk>=0.2          # real A2A dispatch (stub otherwise)
+pytest>=8.0           # eval/test_router.py

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "intent-router-jev.fullname" . }}
+  labels:
+    {{- include "intent-router-jev.labels" . | nindent 4 }}
+data:
+  CLASSIFIER_BACKEND: {{ .Values.config.classifierBackend | quote }}
+  TYPESAFE_MODEL: {{ .Values.config.jevModel | quote }}
+  TYPESAFE_API_URL: {{ .Values.config.jevApiUrl | quote }}
+  TYPESAFE_TIMEOUT_S: {{ .Values.config.jevTimeoutS | quote }}
+  CONFIDENCE_THRESHOLD: {{ .Values.config.confidenceThreshold | quote }}
+  HUMAN_REVIEW_THRESHOLD: {{ .Values.config.humanReviewThreshold | quote }}
+  LOG_LEVEL: {{ .Values.config.logLevel | quote }}
+  WORKER_AGENTS_JSON: {{ .Values.config.workerAgents | toJson | quote }}

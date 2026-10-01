@@ -1,0 +1,32 @@
+# Example values for a real GKE deployment.
+# Copy to values-prod.yaml, fill in, and pass with -f. Keep secrets out of git.
+replicaCount: 2
+
+image:
+  repository: us-central1-docker.pkg.dev/my-gcp-project/intent-router-jev/intent-router-jev
+  tag: "v0.1.0"
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 8080
+
+config:
+  classifierBackend: "jev"
+  jevModel: "jev-1.13.0"
+  jevApiUrl: "https://api.typesafe.ai/v1/systemone"
+  jevTimeoutS: "10"
+  confidenceThreshold: 0.6
+  humanReviewThreshold: 0.5
+  logLevel: "INFO"
+
+secrets:
+  create: false   # use kubectl-created secret or External Secrets
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 1Gi
+  limits:
+    cpu: "2"
+    memory: 2Gi
